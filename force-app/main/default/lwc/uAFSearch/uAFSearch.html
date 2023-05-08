@@ -15,11 +15,11 @@
        <table class="slds-table slds-table_cell-buffer slds-table_bordered slds-m-top_small">
           <thead>
              <tr class="slds-line-height_reset">
-                <th class="" scope="col">
-                   <div class="slds-truncate" title="First Name">First Name</div>
-                </th>
-                <th class="" scope="col">
-                   <div class="slds-truncate" title="Last Name">Last Name</div>
+               <th class="" scope="col">
+                  <div class="slds-truncate" title="ID">View</div>
+               </th> 
+               <th class="" scope="col">
+                   <div class="slds-truncate" title="Name" onclick={viewContact}>Name</div>
                 </th>
                 <th class="" scope="col">
                    <div class="slds-truncate" title="Phone">Phone</div>
@@ -35,11 +35,13 @@
           <tbody>   
              <template for:each={contactsRecord} for:item="con">
                 <tr class="slds-hint-parent" key={Id}>
+                  <td>
+                     <div class="slds-truncate">
+                        <lightning-button variant="Base" label="View" onclick={viewRecord} value={con.Id}></lightning-button>
+                     </div>
+                  </td>
                    <td>
-                      <div class="slds-truncate">{con.FirstName}</div>
-                   </td>
-                   <td>
-                      <div class="slds-truncate">{con.LastName}</div>
+                      <div class="slds-truncate">{con.Name}</div>
                    </td>
                    <td>
                       <div class="slds-truncate">

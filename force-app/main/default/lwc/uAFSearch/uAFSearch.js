@@ -1,9 +1,10 @@
 import { LightningElement,track} from 'lwc';
+import { NavigationMixin } from 'lightning/navigation';
 // import server side apex class method 
 import getContactList from '@salesforce/apex/UAF_ContactController.getContactList';
 // import standard toast event 
 import {ShowToastEvent} from 'lightning/platformShowToastEvent' 
-export default class customSearch extends LightningElement {    
+export default class customSearch extends NavigationMixin(LightningElement) {    
     @track contactsRecord;
     searchValue = ''; 
     // update searchValue var when input field value change
@@ -38,5 +39,16 @@ export default class customSearch extends LightningElement {
             });
             this.dispatchEvent(event);
         }
+    }
+    viewRecord(event) {
+        // Navigate to Account record page
+        this[NavigationMixin.Navigate]({
+            type: 'standard__recordPage',
+            attributes: {
+                "recordId": event.target.value,
+                "objectApiName": "Contact",
+                "actionName": "view"
+            }
+        });
     }
 }
